@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#20120E">
+  <meta name="description" content="Tequila Dorado: presentación informativa de una marca inspirada en la tradición mexicana y sus variedades de crema de tequila.">
+  <meta name="robots" content="index,follow">
+  <title>Tequila Dorado | Inspiración mexicana</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --espresso:#20120E;--chocolate:#2D1B15;--gold:#D9B46B;
+      --cream:#F8E8C9;--ivory:#FFF9EF;--mahogany:#6B2E20;
+      --muted:#BFAE9B;--line:rgba(217,180,107,.24);
+      --serif:"Playfair Display",Georgia,serif;--sans:"DM Sans",Arial,sans-serif;
+      --shadow:0 18px 50px rgba(20,10,6,.22);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{margin:0;background:var(--ivory);color:var(--espresso);font-family:var(--sans);line-height:1.65}
+    img{display:block;max-width:100%}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .skip-link{position:absolute;left:-9999px;top:10px;background:var(--gold);padding:10px;z-index:200}
+    .skip-link:focus{left:10px}
+    .site-header{position:sticky;top:0;z-index:100;background:rgba(32,18,14,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .nav-wrap{max-width:1200px;margin:auto;padding:0 5%;min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;color:var(--cream);min-width:max-content}
+    .brand-mark{width:42px;height:42px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-family:var(--serif);font-size:21px}
+    .brand-name{font-family:var(--serif);font-size:19px;letter-spacing:1.5px;line-height:1.1}
+    .brand-sub{display:block;color:var(--gold);font-size:9px;letter-spacing:2.7px;margin-top:5px}
+    .nav-links{display:flex;align-items:center;gap:26px;color:#F8E8C9;font-size:13px}
+    .nav-links a{transition:color .2s}
+    .nav-links a:hover,.nav-links a:focus-visible{color:var(--gold)}
+    .nav-actions{display:flex;align-items:center;gap:12px}
+    .lang-btn,.menu-toggle{border:1px solid var(--line);background:transparent;color:var(--cream);border-radius:999px;padding:9px 13px;cursor:pointer}
+    .lang-btn:hover,.menu-toggle:hover{border-color:var(--gold);color:var(--gold)}
+    .menu-toggle{display:none;font-size:20px;line-height:1}
+    .hero{min-height:630px;background:linear-gradient(90deg,rgba(32,18,14,.96) 0%,rgba(32,18,14,.82) 48%,rgba(32,18,14,.2) 100%),url("https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=2000&q=85") center/cover;display:flex;align-items:center;color:var(--cream)}
+    .hero-inner{width:min(1200px,90%);margin:auto;padding:100px 0}
+    .eyebrow{color:var(--gold);font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase}
+    h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15}
+    h1{font-size:clamp(42px,6.5vw,78px);max-width:720px;margin:22px 0}
+    .hero p{max-width:550px;color:#E6D7C5;font-size:17px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:13px;margin-top:32px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 22px;border-radius:3px;font-weight:700;font-size:12px;letter-spacing:.7px;text-transform:uppercase;transition:transform .2s,background .2s}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-gold{background:var(--gold);color:var(--espresso)}
+    .btn-outline{border:1px solid rgba(248,232,201,.65);color:var(--cream)}
+    .intro-strip{background:var(--chocolate);color:var(--cream);padding:20px 5%}
+    .strip-inner{max-width:1100px;margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .strip-inner span{font-size:12px;letter-spacing:.5px}
+    .strip-inner b{color:var(--gold);font-weight:600;margin-right:7px}
+    .section{padding:94px 5%}
+    .section-inner{max-width:1200px;margin:auto}
+    .section-heading{text-align:center;max-width:690px;margin:0 auto 45px}
+    .section-heading h2{font-size:clamp(32px,4vw,48px);margin:12px 0;color:var(--espresso)}
+    .section-heading p{color:#75665A;margin:0}
+    .catalog{background:var(--ivory)}
+    .product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+    .product-card{background:#fff;border:1px solid #EDE2D4;box-shadow:0 8px 28px rgba(73,51,41,.06);overflow:hidden;transition:transform .25s,box-shadow .25s}
+    .product-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+    .product-image{height:285px;background:var(--cream);overflow:hidden}
+    .product-image img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+    .product-card:hover .product-image img{transform:scale(1.045)}
+    .product-copy{padding:23px 22px 25px}
+    .product-number{color:#A17B3E;font-size:10px;letter-spacing:2px;font-weight:700}
+    .product-copy h3{font-size:23px;margin:8px 0;color:var(--chocolate)}
+    .product-copy p{font-size:13px;color:#75665A;margin:0}
+    .product-note{display:inline-block;margin-top:16px;padding-top:12px;border-top:1px solid #EDE2D4;color:#94713A;font-size:10px;letter-spacing:1.3px;text-transform:uppercase}
+    .story{background:var(--cream)}
+    .story-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:65px}
+    .story-photo{min-height:430px;background:linear-gradient(140deg,rgba(32,18,14,.08),rgba(32,18,14,.18)),url("https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?auto=format&fit=crop&w=1100&q=85") center/cover}
+    .story-copy h2{font-size:clamp(34px,4vw,49px);margin:13px 0 20px}
+    .story-copy p{color:#655348}
+    .story-quote{font-family:var(--serif);font-size:23px;color:var(--mahogany);border-left:2px solid var(--gold);padding-left:18px;margin-top:28px}
+    .values{background:var(--espresso);color:var(--cream)}
+    .values .section-heading h2{color:var(--cream)}
+    .values .section-heading p{color:var(--muted)}
+    .value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .value-card{border:1px solid var(--line);padding:30px 25px;min-height:190px}
+    .value-icon{font-size:24px;color:var(--gold)}
+    .value-card h3{font-size:21px;color:var(--gold);margin:15px 0 8px}
+    .value-card p{font-size:13px;color:#CBBBAA;margin:0}
+    .gallery{background:#F1E5D4}
+    .gallery-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:15px}
+    .gallery-grid img{width:100%;height:250px;object-fit:cover}
+    .gallery-grid img:first-child{height:515px;grid-row:span 2}
+    .info-band{background:var(--mahogany);color:var(--cream);text-align:center;padding:65px 5%}
+    .info-band h2{font-size:clamp(30px,4vw,43px);margin:10px auto;max-width:760px}
+    .info-band p{max-width:690px;margin:15px auto 0;color:#EAD8C8;font-size:14px}
+    .faq{background:var(--ivory)}
+    .faq-list{max-width:850px;margin:auto}
+    details{border-bottom:1px solid #E4D7C7;padding:19px 0}
+    summary{cursor:pointer;font-family:var(--serif);font-size:19px;color:var(--chocolate);font-weight:600}
+    details p{color:#75665A;font-size:14px;max-width:760px}
+    .footer{background:#160C09;color:var(--cream);padding:55px 5% 25px}
+    .footer-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:45px}
+    .footer h3{color:var(--gold);font-size:19px;margin:0 0 15px}
+    .footer p,.footer a{color:#C8B8A7;font-size:13px}
+    .footer a:hover{color:var(--gold)}
+    .footer-links{display:grid;gap:9px}
+    .footer-bottom{max-width:1200px;margin:35px auto 0;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;color:#9F8D7C;font-size:11px}
+    .notice{font-size:11px;color:#A99886;max-width:1200px;margin:15px auto 0}
+    :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+    @media(max-width:900px){
+      .nav-links{gap:14px}.product-grid{grid-template-columns:repeat(2,1fr)}
+      .story-grid{gap:35px}.product-image{height:250px}
+    }
+    @media(max-width:700px){
+      .nav-wrap{min-height:70px}.menu-toggle{display:block}
+      .nav-links{display:none;position:absolute;top:70px;left:0;right:0;background:var(--espresso);padding:20px 6% 25px;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}
+      .nav-links.open{display:flex}.nav-links a{font-size:15px;padding:5px 0}
+      .hero{min-height:570px;background-position:62% center}
+      .hero-inner{padding:80px 0}.hero p{font-size:15px}
+      .section{padding:70px 5%}.product-grid{grid-template-columns:1fr}
+      .product-image{height:300px}.story-grid{grid-template-columns:1fr}
+      .story-photo{min-height:300px;order:2}.value-grid{grid-template-columns:1fr}
+      .gallery-grid{grid-template-columns:1fr 1fr}.gallery-grid img,.gallery-grid img:first-child{height:190px;grid-row:auto}
+      .gallery-grid img:first-child{grid-column:span 2;height:250px}
+      .footer-grid{grid-template-columns:1fr;gap:28px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenido" data-i18n="skip">Saltar al contenido</a>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="#inicio" aria-label="Tequila Dorado, inicio">
+        <span class="brand-mark" aria-hidden="true">TD</span>
+        <span><span class="brand-name">TEQUILA DORADO</span><span class="brand-sub">INSPIRACIÓN MEXICANA</span></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Navegación principal">
+        <a href="#inicio" data-i18n="navHome">Inicio</a>
+        <a href="#coleccion" data-i18n="navCollection">Colección</a>
+        <a href="#historia" data-i18n="navStory">Nuestra historia</a>
+        <a href="#contacto" data-i18n="navContact">Contacto</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="lang-btn" id="languageToggle" type="button" aria-label="Cambiar idioma">FR</button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="hero" id="inicio">
+      <div class="hero-inner">
+        <span class="eyebrow" data-i18n="heroEyebrow">Una identidad inspirada en México</span>
+        <h1 data-i18n="heroTitle">Tequila Dorado — El sabor de México</h1>
+        <p data-i18n="heroText">Tradición, sabor y elegancia en una experiencia única. Conoce la inspiración y las variedades que forman parte de nuestro universo de marca.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="#coleccion" data-i18n="heroButton">Descubrir la colección</a>
+          <a class="btn btn-outline" href="#historia" data-i18n="heroSecondary">Conocer la historia</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="intro-strip">
+      <div class="strip-inner">
+        <span><b>✦</b><span data-i18n="strip1">Inspiración mexicana</span></span>
+        <span><b>✦</b><span data-i18n="strip2">Identidad y tradición</span></span>
+        <span><b>✦</b><span data-i18n="strip3">Presentación cuidada</span></span>
+      </div>
+    </div>
+
+    <section class="section catalog" id="coleccion">
+      <div class="section-inner">
+        <div class="section-heading">
+          <span class="eyebrow" data-i18n="catalogEyebrow">Universo Tequila Dorado</span>
+          <h2 data-i18n="catalogTitle">Variedades de la colección</h2>
+          <p data-i18n="catalogText">Conoce las cinco referencias presentadas en el catálogo informativo de la marca.</p>
+        </div>
+        <div class="product-grid" id="productos" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section story" id="historia">
+      <div class="section-inner story-grid">
+        <div class="story-copy">
+          <span class="eyebrow" data-i18n="storyEyebrow">Nuestra esencia</span>
+          <h2 data-i18n="storyTitle">Una historia con inspiración mexicana</h2>
+          <p data-i18n="storyP1">Tequila Dorado nace como un concepto de marca inspirado en la riqueza cultural de México, sus paisajes, sus colores y la tradición que rodea al universo del tequila.</p>
+          <p data-i18n="storyP2">Esta presentación reúne distintas referencias de crema de tequila en un espacio visual pensado para compartir la identidad del proyecto.</p>
+          <div class="story-quote" data-i18n="storyQuote">“La identidad de una marca también se cuenta a través de sus detalles.”</div>
+        </div>
+        <div class="story-photo" role="img" aria-label="Ambiente cálido de inspiración mexicana"></div>
+      </div>
+    </section>
+
+    <section class="section values">
+      <div class="section-inner">
+        <div class="section-heading">
+          <span class="eyebrow" data-i18n="valuesEyebrow">Lo que representa la marca</span>
+          <h2 data-i18n="valuesTitle">Detalles que construyen identidad</h2>
+          <p data-i18n="valuesText">Un lenguaje visual que combina tonos cálidos, referencias culturales y una presentación coherente.</p>
+        </div>
+        <div class="value-grid">
+          <article class="value-card"><div class="value-icon" aria-hidden="true">✧</div><h3 data-i18n="value1Title">Inspiración</h3><p data-i18n="value1Text">Referencias visuales que evocan la cultura y la estética mexicana.</p></article>
+          <article class="value-card"><div class="value-icon" aria-hidden="true">◈</div><h3 data-i18n="value2Title">Presentación</h3><p data-i18n="value2Text">Una identidad gráfica basada en tonos cacao, crema, caoba y dorado.</p></article>
+          <article class="value-card"><div class="value-icon" aria-hidden="true">✦</div><h3 data-i18n="value3Title">Transparencia</h3><p data-i18n="value3Text">La información específica de cada referencia debe confirmarse con su fabricante o proveedor.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section gallery">
+      <div class="section-inner">
+        <div class="section-heading">
+          <span class="eyebrow" data-i18n="galleryEyebrow">Lenguaje visual</span>
+          <h2 data-i18n="galleryTitle">Una estética cálida y atemporal</h2>
+          <p data-i18n="galleryText">Imágenes de ambiente para acompañar la identidad visual de Tequila Dorado.</p>
+        </div>
+        <div class="gallery-grid">
+          <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1000&q=80" alt="Composición de bebidas en ambiente cálido" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?auto=format&fit=crop&w=700&q=80" alt="Ambiente de mesa con tonos cálidos" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=700&q=80" alt="Interior de restaurante con iluminación cálida" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="info-band">
+      <span class="eyebrow" data-i18n="infoEyebrow">Información de marca</span>
+      <h2 data-i18n="infoTitle">Conoce siempre el origen y los detalles de cada producto</h2>
+      <p data-i18n="infoText">Las imágenes son ilustrativas. Ingredientes, alérgenos, graduación alcohólica, procedencia, etiquetado y demás características deben consultarse en la etiqueta y documentación oficial de cada producto.</p>
+    </section>
+
+    <section class="section faq">
+      <div class="section-inner">
+        <div class="section-heading">
+          <span class="eyebrow" data-i18n="faqEyebrow">Información útil</span>
+          <h2 data-i18n="faqTitle">Preguntas frecuentes</h2>
+        </div>
+        <div class="faq-list">
+          <details><summary data-i18n="faqQ1">¿Qué es Tequila Dorado?</summary><p data-i18n="faqA1">Es el nombre del proyecto de identidad y presentación de marca mostrado en este sitio informativo.</p></details>
+          <details><summary data-i18n="faqQ2">¿Las fotografías representan exactamente los productos?</summary><p data-i18n="faqA2">No necesariamente. Algunas imágenes son ilustrativas y deben sustituirse por fotografías propias y verificadas de cada referencia.</p></details>
+          <details><summary data-i18n="faqQ3">¿Dónde puedo consultar ingredientes y alérgenos?</summary><p data-i18n="faqA3">Consulta siempre la etiqueta oficial y la información facilitada por el fabricante o proveedor.</p></details>
+          <details><summary data-i18n="faqQ4">¿Este sitio permite realizar pedidos?</summary><p data-i18n="faqA4">No. Esta página es una presentación informativa de marca y no procesa compras, pedidos ni pagos.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contacto">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#inicio"><span class="brand-mark">TD</span><span><span class="brand-name">TEQUILA DORADO</span><span class="brand-sub">INSPIRACIÓN MEXICANA</span></span></a>
+        <p data-i18n="footerIntro">Un proyecto de identidad visual inspirado en México y presentado para una audiencia internacional.</p>
+      </div>
+      <div>
+        <h3 data-i18n="footerExplore">Explorar</h3>
+        <div class="footer-links">
+          <a href="#inicio" data-i18n="navHome">Inicio</a>
+          <a href="#coleccion" data-i18n="navCollection">Colección</a>
+          <a href="#historia" data-i18n="navStory">Nuestra historia</a>
+        </div>
+      </div>
+      <div>
+        <h3 data-i18n="footerContact">Información</h3>
+        <div class="footer-links">
+          <a href="#contacto" data-i18n="footerContactLink">Contacto institucional</a>
+          <a href="#contenido" data-i18n="footerPrivacy">Privacidad</a>
+          <a href="#contenido" data-i18n="footerLegal">Aviso legal</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Tequila Dorado</span>
+      <span data-i18n="footerNote">Sitio informativo · No se realizan ventas ni pedidos</span>
+    </div>
+    <p class="notice" data-i18n="responsibleNote">Contenido dirigido a personas adultas. Las bebidas alcohólicas no son adecuadas para menores de edad. No conduzcas si has consumido alcohol.</p>
+  </footer>
+
+  <script>
+    "use strict";
+
+    // Catálogo informativo: conserva las referencias y textos proporcionados.
+    const productos = [
+      {
+        id: 1,
+        nombre: "Crema de Tequila Vainilla",
+        descripcion: "Suave y cremosa, con un delicado toque de vainilla que aporta dulzura y elegancia.",
+        imagen: "https://images.openai.com/static-rsc-4/Uk8OoGKRWYdb3XC0mqsY3nvZNl5z3xy59JofSbYeafphI8dh27dJ1X8EAiINNi8UVLfG51egjDxbjhbqZH-Xzeq1glOrUYCwfaAlrPWAAqV30jY_yxeKKhTJnNDs5AuVuSadlVcRDxWKr61pVFClufSGmwNEqLZEwQyWKnSHI3fz8xQUz0WzvdNARgW8ma_B?purpose=fullsize",
+        nombreFr: "Crème de tequila à la vanille",
+        descripcionFr: "Une référence présentée autour de la vanille."
+      },
+      {
+        id: 2,
+        nombre: "Crema de Tequila Chocolate",
+        descripcion: "Una combinación de crema y chocolate con un perfil de sabor intenso.",
+        imagen: "https://images.openai.com/static-rsc-4/MNZyVab94-mpUEdoLdLCn0cx9s-cHgisWgHyEd7_l-TVmIoltWKmUwRJuzHU446C4Qq-3mrjqwcFVa0XU_o9-B3_N1wPxAenPpsZqSzWwjq6TBx3yEmJPZfdn43RDwchNSd-tcgukirIJnKWgcQcU3GGmrbBJQGPCk4BQedyHAm-gLsWgQRqQfg7LzXs0EVM?purpose=fullsize",
+        nombreFr: "Crème de tequila au chocolat",
+        descripcionFr: "Une référence présentée autour du chocolat."
+      },
+      {
+        id: 3,
+        nombre: "Crema de Tequila Fresa",
+        descripcion: "Una referencia de crema de tequila con notas de fresa.",
+        imagen: "https://images.openai.com/static-rsc-4/uyN6Ym9sRlqOL6rVeGfNT6FbdB0b-xW2FidUynHN4_pCXqjXlJdZeKIzj6WgWAGCJ0T32WsMM_F2Se4lerVtz4gliIoPBOjRtsTF9U-V9mUWpcvtKFgUp5MqHUyAbNipi5pD0sa9zUK_FkCrE55E26i3FEnIGIiMoWOc6RLgftRZGgD-cdmyo8qSLALYkLjS?purpose=fullsize",
+        nombreFr: "Crème de tequila à la fraise",
+        descripcionFr: "Une référence présentée autour de la fraise."
+      },
+      {
+        id: 4,
+        nombre: "Crema de Tequila Caramelo",
+        descripcion: "Una referencia de crema de tequila con notas de caramelo.",
+        imagen: "https://images.openai.com/static-rsc-4/QJXPih2SGr0QznDODOI9PXzWOSw1U3d4u0bMEVzvXaTiQvKeNKII2aYYXEkuBfjDhZh40euGS2YydQtAPoiHotfvPzcikaorOEchIV_ALU0AKh6mmPyTfGQfi8zqF5H_VOccQxaY-ZavX43p0JpfqIxiiDaf7UFgog9hyb3hVcVftigbdEFGAARZYXydNGO-?purpose=fullsize",
+        nombreFr: "Crème de tequila au caramel",
+        descripcionFr: "Une référence présentée autour du caramel."
+      },
+      {
+        id: 5,
+        nombre: "Crema de Tequila Coco",
+        descripcion: "Una referencia de crema de tequila con notas de coco.",
+        imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8dJp0yNphuTGA0BJ5qIb1_RvaQPRZv5EEhGHHBU4SXzg6ThNuSqYvISdI&s=10",
+        nombreFr: "Crème de tequila à la noix de coco",
+        descripcionFr: "Une référence présentée autour de la noix de coco."
+      }
+    ];
+
+    const traducciones = {
+      es: {
+        skip:"Saltar al contenido",navHome:"Inicio",navCollection:"Colección",navStory:"Nuestra historia",navContact:"Contacto",
+        heroEyebrow:"Una identidad inspirada en México",heroTitle:"Tequila Dorado — El sabor de México",
+        heroText:"Tradición, sabor y elegancia en una experiencia única. Conoce la inspiración y las variedades que forman parte de nuestro universo de marca.",
+        heroButton:"Descubrir la colección",heroSecondary:"Conocer la historia",strip1:"Inspiración mexicana",strip2:"Identidad y tradición",strip3:"Presentación cuidada",
+        catalogEyebrow:"Universo Tequila Dorado",catalogTitle:"Variedades de la colección",catalogText:"Conoce las cinco referencias presentadas en el catálogo informativo de la marca.",
+        storyEyebrow:"Nuestra esencia",storyTitle:"Una historia con inspiración mexicana",
+        storyP1:"Tequila Dorado nace como un concepto de marca inspirado en la riqueza cultural de México, sus paisajes, sus colores y la tradición que rodea al universo del tequila.",
+        storyP2:"Esta presentación reúne distintas referencias de crema de tequila en un espacio visual pensado para compartir la identidad del proyecto.",
+        storyQuote:"“La identidad de una marca también se cuenta a través de sus detalles.”",
+        valuesEyebrow:"Lo que representa la marca",valuesTitle:"Detalles que construyen identidad",valuesText:"Un lenguaje visual que combina tonos cálidos, referencias culturales y una presentación coherente.",
+        value1Title:"Inspiración",value1Text:"Referencias visuales que evocan la cultura y la estética mexicana.",
+        value2Title:"Presentación",value2Text:"Una identidad gráfica basada en tonos cacao, crema, caoba y dorado.",
+        value3Title:"Transparencia",value3Text:"La información específica de cada referencia debe confirmarse con su fabricante o proveedor.",
+        galleryEyebrow:"Lenguaje visual",galleryTitle:"Una estética cálida y atemporal",galleryText:"Imágenes de ambiente para acompañar la identidad visual de Tequila Dorado.",
+        infoEyebrow:"Información de marca",infoTitle:"Conoce siempre el origen y los detalles de cada producto",
+        infoText:"Las imágenes son ilustrativas. Ingredientes, alérgenos, graduación alcohólica, procedencia, etiquetado y demás características deben consultarse en la etiqueta y documentación oficial de cada producto.",
+        faqEyebrow:"Información útil",faqTitle:"Preguntas frecuentes",
+        faqQ1:"¿Qué es Tequila Dorado?",faqA1:"Es el nombre del proyecto de identidad y presentación de marca mostrado en este sitio informativo.",
+        faqQ2:"¿Las fotografías representan exactamente los productos?",faqA2:"No necesariamente. Algunas imágenes son ilustrativas y deben sustituirse por fotografías propias y verificadas de cada referencia.",
+        faqQ3:"¿Dónde puedo consultar ingredientes y alérgenos?",faqA3:"Consulta siempre la etiqueta oficial y la información facilitada por el fabricante o proveedor.",
+        faqQ4:"¿Este sitio permite realizar pedidos?",faqA4:"No. Esta página es una presentación informativa de marca y no procesa compras, pedidos ni pagos.",
+        footerIntro:"Un proyecto de identidad visual inspirado en México y presentado para una audiencia internacional.",
+        footerExplore:"Explorar",footerContact:"Información",footerContactLink:"Contacto institucional",footerPrivacy:"Privacidad",footerLegal:"Aviso legal",
+        footerNote:"Sitio informativo · No se realizan ventas ni pedidos",responsibleNote:"Contenido dirigido a personas adultas. Las bebidas alcohólicas no son adecuadas para menores de edad. No conduzcas si has consumido alcohol.",
+        itemLabel:"Referencia"
+      },
+      fr: {
+        skip:"Aller au contenu",navHome:"Accueil",navCollection:"Collection",navStory:"Notre histoire",navContact:"Contact",
+        heroEyebrow:"Une identité inspirée du Mexique",heroTitle:"Tequila Dorado — Les couleurs du Mexique",
+        heroText:"Tradition, identité et élégance dans un univers visuel unique. Découvrez l’inspiration et les références présentées par notre marque.",
+        heroButton:"Découvrir la collection",heroSecondary:"Découvrir notre histoire",strip1:"Inspiration mexicaine",strip2:"Identité et tradition",strip3:"Présentation soignée",
+        catalogEyebrow:"L’univers Tequila Dorado",catalogTitle:"Les références de la collection",catalogText:"Découvrez les cinq références présentées dans ce catalogue informatif.",
+        storyEyebrow:"Notre identité",storyTitle:"Une histoire inspirée du Mexique",
+        storyP1:"Tequila Dorado est un concept de marque inspiré par la richesse culturelle du Mexique, ses paysages, ses couleurs et l’univers traditionnel de la tequila.",
+        storyP2:"Cette présentation rassemble différentes références de crème de tequila dans un espace visuel consacré à l’identité du projet.",
+        storyQuote:"« L’identité d’une marque se raconte aussi à travers ses détails. »",
+        valuesEyebrow:"Les valeurs de la marque",valuesTitle:"Les détails qui créent une identité",valuesText:"Un langage visuel qui associe des tons chaleureux, des références culturelles et une présentation cohérente.",
+        value1Title:"Inspiration",value1Text:"Des références visuelles qui évoquent la culture et l’esthétique mexicaines.",
+        value2Title:"Présentation",value2Text:"Une identité graphique autour du cacao, de la crème, de l’acajou et de l’or.",
+        value3Title:"Transparence",value3Text:"Les informations propres à chaque référence doivent être confirmées auprès du fabricant ou du fournisseur.",
+        galleryEyebrow:"Univers visuel",galleryTitle:"Une esthétique chaleureuse et intemporelle",galleryText:"Des images d’ambiance qui accompagnent l’identité visuelle de Tequila Dorado.",
+        infoEyebrow:"Informations sur la marque",infoTitle:"Vérifiez toujours l’origine et les caractéristiques de chaque produit",
+        infoText:"Les images sont illustratives. Les ingrédients, allergènes, le degré d’alcool, la provenance, l’étiquetage et les autres caractéristiques doivent être vérifiés sur l’étiquette et dans la documentation officielle du produit.",
+        faqEyebrow:"Informations utiles",faqTitle:"Questions fréquentes",
+        faqQ1:"Qu’est-ce que Tequila Dorado ?",faqA1:"C’est le nom du projet d’identité et de présentation de marque présenté sur ce site informatif.",
+        faqQ2:"Les photographies représentent-elles exactement les produits ?",faqA2:"Pas nécessairement. Certaines images sont illustratives et doivent être remplacées par des photographies propres et vérifiées de chaque référence.",
+        faqQ3:"Où consulter les ingrédients et les allergènes ?",faqA3:"Consultez toujours l’étiquette officielle et les informations fournies par le fabricant ou le fournisseur.",
+        faqQ4:"Ce site permet-il de passer commande ?",faqA4:"Non. Cette page est une présentation informative de marque et ne traite aucun achat, aucune commande ni aucun paiement.",
+        footerIntro:"Un projet d’identité visuelle inspiré du Mexique et présenté à un public international.",
+        footerExplore:"Explorer",footerContact:"Informations",footerContactLink:"Contact institutionnel",footerPrivacy:"Confidentialité",footerLegal:"Mentions légales",
+        footerNote:"Site informatif · Aucune vente ni commande",responsibleNote:"Contenu destiné aux adultes. Les boissons alcoolisées ne conviennent pas aux mineurs. Ne conduisez pas après avoir consommé de l’alcool.",
+        itemLabel:"Référence"
+      }
+    };
+
+    const productContainer = document.getElementById("productos");
+    const languageToggle = document.getElementById("languageToggle");
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    let currentLanguage = "es";
+
+    function renderProducts(language) {
+      if (!productContainer) return;
+      productContainer.replaceChildren();
+      productos.forEach((product, index) => {
+        const card = document.createElement("article");
+        card.className = "product-card";
+        const imageWrap = document.createElement("div");
+        imageWrap.className = "product-image";
+        const image = document.createElement("img");
+        image.src = product.imagen;
+        image.alt = language === "fr" ? product.nombreFr : product.nombre;
+        image.loading = "lazy";
+        image.decoding = "async";
+        image.onerror = function () {
+          this.onerror = null;
+          this.src = "https://placehold.co/700x520/F8E8C9/493329?text=Tequila+Dorado";
+          this.alt = "Image illustrative Tequila Dorado";
+        };
+        imageWrap.appendChild(image);
+
+        const copy = document.createElement("div");
+        copy.className = "product-copy";
+        const number = document.createElement("span");
+        number.className = "product-number";
+        number.textContent = `${String(index + 1).padStart(2, "0")} / 05`;
+        const title = document.createElement("h3");
+        title.textContent = language === "fr" ? product.nombreFr : product.nombre;
+        const description = document.createElement("p");
+        description.textContent = language === "fr" ? product.descripcionFr : product.descripcion;
+        const note = document.createElement("span");
+        note.className = "product-note";
+        note.textContent = traducciones[language].itemLabel;
+        copy.append(number, title, description, note);
+        card.append(imageWrap, copy);
+        productContainer.appendChild(card);
+      });
+    }
+
+    function setLanguage(language) {
+      currentLanguage = language;
+      document.documentElement.lang = language;
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.dataset.i18n;
+        if (traducciones[language][key]) element.textContent = traducciones[language][key];
+      });
+      languageToggle.textContent = language === "es" ? "FR" : "ES";
+      languageToggle.setAttribute("aria-label", language === "es" ? "Passer en français" : "Cambiar a español");
+      renderProducts(language);
+    }
+
+    languageToggle.addEventListener("click", () => {
+      setLanguage(currentLanguage === "es" ? "fr" : "es");
+    });
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+      menuToggle.textContent = isOpen ? "×" : "☰";
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Abrir menú");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    setLanguage("es");
+  </script>
+</body>
+</html>
